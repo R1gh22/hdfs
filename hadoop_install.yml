@@ -1,0 +1,28 @@
+- hosts: slave,master
+  tasks:
+  - stat:
+     path: "/root/Desktop/jdk-8u171-linux-x64.rpm"
+    register: x
+  - stat:
+     path: "/root/Desktop/hadoop-1.2.1-1.x86_64.rpm"
+    register: y
+  - copy:
+     dest: "/root/Desktop/"
+     src: "/root/Desktop/hadoop-1.2.1-1.x86_64.rpm"
+    when: y.stat.exists==false
+  - copy:
+     dest: "/root/Desktop/"
+     src: "/root/Desktop/jdk-8u171-linux-x64.rpm"
+    when: x.stat.exists==false
+  - package:
+      name: "/root/Desktop/hadoop-1.2.1-1.x86_64.rpm"
+      state: present
+    ignore_errors: yes
+  - package:
+      name: "/root/Desktop/jdk-8u171-linux-x64.rpm"
+      state: present
+#  - command: "export JAVA_HOME=/usr/java/jdk1.8.0_171-amd64/"
+#  - command: "export PATH=/usr/java/jdk1.8.0_171-amd64/bin/:$PATH"
+  - lineinfile:
+      dest: "/root/.bashrc"
+      line: "export JAVA_HOME=/usr/java/jdk1.8.0_171-amd64/\nexport PATH=/usr/java/jdk1.8.0_171-amd64/bin/:$PATH"
