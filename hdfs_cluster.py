@@ -1,6 +1,7 @@
 import time
 from subprocess import getoutput as gout,getstatusoutput
 
+gout("mkdir /root/Desktop/Cluster")
 
 def hadoop():
 	##----------------------------Slave's IP---------------------------------------#
