@@ -1,8 +1,0 @@
-hosts: master
-  tasks:
-  - copy:
-      dest: "/etc/hadoop/hdfs-site.xml"
-      src: "/root/Desktop/Cluster/hdfs.xml"
-  - copy:
-      dest: "/etc/hadoop/core-site.xml"
-      src: "/root/Desktop/Cluster/core.xml"
