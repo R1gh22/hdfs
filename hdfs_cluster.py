@@ -76,10 +76,10 @@ def hadoop():
 
 	##-------------------------------run-yml-files------------------------------------##
 
-	x=gout("ansible-playbook /pro_ansible/hadoop_install.yml")
+	x=gout("ansible-playbook hadoop_install.yml")
 	print(x)
 	#time.sleep(60)
-	y=gout("ansible-playbook /pro_ansible/hadoop_file.yml")
+	y=gout("ansible-playbook hadoop_file.yml")
 	print(y)
 
 	##------------------------------configure-master & slave----------------------------------##
@@ -89,7 +89,7 @@ def hadoop():
 	gout(" sshpass -p {} ssh -o StrictHostKeyChecking=no -l {} {} hadoop-daemon.sh start namenode".format(ps,usr,ip))
 	c=gout(" sshpass -p {} ssh -o StrictHostKeyChecking=no -l {} {} jps | grep NameNode".format(ps,usr,ip))
 	print(c)
-	gout("ansible-playbook /pro_ansible/slave_config.yml")
+	gout("ansible-playbook slave_config.yml")
 
 ##--------------------------------read-file---------------------------------##
 
@@ -114,7 +114,7 @@ def cluster():
 
 	k=input("Enter Your Choise:-")
 	if k==1:
-		x=gout("ifconfig enp0s3")
+		x=gout("ifconfig enp0s3") #use whatever your n/w card like enp0s3,etho,etc..
 		ip=x.split(" ")
 		gout("firefox {}:50070".format(ip[13]))
 	elif k==2:
