@@ -14,10 +14,12 @@
      dest: "/root/Desktop/"
      src: "/root/Desktop/jdk-8u171-linux-x64.rpm"
     when: x.stat.exists==false
-  - package:
-      name: "/root/Desktop/hadoop-1.2.1-1.x86_64.rpm"
-      state: present
-    ignore_errors: yes
+  - block:
+      - package:
+          name: "/root/Desktop/hadoop-1.2.1-1.x86_64.rpm"
+          state: present
+    rescue:
+      - command: "rpm -ivh /root/Desktop/hadoop-1.2.1-1.x86_64.rpm --force"
   - package:
       name: "/root/Desktop/jdk-8u171-linux-x64.rpm"
       state: present
