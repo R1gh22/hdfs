@@ -1,2 +1,2 @@
 # hdfs
-hadoop hdfs cluster through Ansible or Python
+hadoop hdfs cluster using Ansible and Python
